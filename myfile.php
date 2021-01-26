@@ -19,7 +19,7 @@
     <div class="container-fluid  b mt-3">
         <div class="row">
             <div class="col-4 w-25">
-            <form method="post" action="\">
+            <form method="post" action="">
                 <select class="form-select form-select-sm"  name="categorias" id="categorias" aria-label="Default select example">
                     <?php 
                     $myClass = new wallpaperscraftBot();
@@ -30,32 +30,34 @@
                             continue;
                         } 
                         $finalValue=preg_replace('/\s+/', '', $value);
-
                         echo"<option value=\"$finalValue\">$finalValue</option>";              
                                               
                     }//foreach
                     
                     ?>
                   </select>
-                  <input type="submit" value="Submit">
+                    <input type="submit" value="Submit">
                   </form>
             </div>
             <!-- LISTA IMAGENS-->
             <div class="col-8">
                 <div class="card" style="width: 18rem;">
                     <?php
-                    $myClass2 = new wallpaperscraftBot();
-                    $categ=$myClass2->buscarImagensPorCategoria();
-                    echo "aqui";
-                    var_dump($categ);
-                    for ($i=0; $i <= count($categ) ; $i++) { 
-                            echo $categ[$i];
-                    }
+                    
+                    $categ1=$myClass->buscarImagensPorCategoria();
+                    echo "AQUI -><br>";
+                    var_dump($categ1);
+                    //var_dump($categ);
+
+                   foreach ($categ1 as $key => $value) {
+                       
+                            echo $value;
                     ?>
-                    <img src="<?php echo $srcIMG ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo $value; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <button type="button" class="btn btn-primary btn-sm">Large button</button>
                     </div>
+                    <?php  }?>
                   </div>
             </div>
             

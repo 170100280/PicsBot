@@ -65,7 +65,7 @@ class wallpaperscraftBot {
             $selectOption = $_POST['categorias']?? '';
             //Cars != cars
             $strCategory=strtolower($selectOption);
-            echo "<h2>$strCategory</h2>";
+            //echo "<h2>$strCategory</h2>";
             $linkComCategoria=URL_CAT.$strCategory;
            // echo $linkComCategoria;                   
          } else{
@@ -73,36 +73,44 @@ class wallpaperscraftBot {
         }
         
         $strHtmlImagens = AcaAmUtil::consumeUrl($linkComCategoria);
-        $aSrcs="";
+
+        $aSrcs=[];
+        $aRet=[];
         $oDomImagens = new DOMDocument();
-        if ($oDomImagens){
+
+        if ($oDomImagens)
+        {
             //@ - "silencer"
             @$oDomImagens->loadHTML($strHtmlImagens);
+
             $xpath = new DomXPath($oDomImagens);
             $nodeList = $xpath->query("//ul[@class='wallpapers__list ']");
 
             if($nodeList->count() == 0){
                 echo "<br> Nada foi escolhido";
-            }else{
+            }else
+            {
                 $node = $nodeList->item(0)->childNodes;//->childNodes->item(1);//->getAttribute('href');
-                $lengthNode=$categ->item(0)->childNodes->length;
+                $lengthNode=$nodeList->item(0)->childNodes->length;
                
-                    for ($i=0; $i+1 <= $lengthNode ; $i++) { 
-                    if($node->item($i)->childNodes->item(1)!=NULL){
-                     $srcIMG=$node->item($i)->childNodes->item(1)->childNodes->item(1)->childNodes->item(1)->getAttribute("src");
-                    
-                     $aSrcs[]=$srcIMG;
-                    }
-
+                    for ($i=0; $i+1 <= $lengthNode ; $i++) 
+                    { 
+                        if($node->item($i)->childNodes->item(1)!=NULL)
+                        {
+                            $srcIMG=$node->item($i)->childNodes->item(1)->childNodes->item(1)->childNodes->item(1)->getAttribute("src");   
+                            $aSrcs[]= $srcIMG;                        
+                            
+                            //echo "index.php -> <br>";
+                            //var_dump($aSrcs);
+                        }//if                      
+                           
                     }//for
-                  
                     
-                    return $aSrcs;
-            }
-            return $aSrcs;  
-        }//if        
+                              
+            }//if
+        }//if 
         return $aSrcs;
-    }
+    }//buscarImagensPorCategoria
 
 
     
