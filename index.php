@@ -5,55 +5,26 @@ CONST URL = "https://wallpaperscraft.com/";
 CONST URL_CAT = "https://wallpaperscraft.com/catalog/";
 
 class wallpaperscraftBot {
-      
-        public function __construct(){
 
+    public function __construct()
+    {
         $this->buscarCategorias();
         $this->buscarImagensPorCategoria();
-        
-        }
+    }//__construct
 
+    public function buscarCategorias()
+    {
 
-    public function buscarCategorias(){
+        $strHtml = AcaAmUtil::consumeUrl(URL);
 
-            $strHtml = AcaAmUtil::consumeUrl(URL);
-            
-        $oDom = new DOMDocument();
-        if ($oDom){
-            //@ - "silencer"
-            @$oDom->loadHTML($strHtml);
-            $xpath = new DomXPath($oDom);
-            $nodeList = $xpath->query("//ul[@class='filters__list JS-Filters']");
-            $node = $nodeList->item(0)->nodeValue;
-            $strCategorias=$node;                
-            $words = preg_replace('/[0-9]+/', '', $strCategorias);                        
-            $aCategorias=explode(" ",$words);
-            //por ter "limpando todos os numeros, foi necessario adicionar a esta categoria o 3 para formar 3D
-            $aCategorias[44]="3".$aCategorias[44];
+        $as = AcaAmUtil::extractHyperlinksFromHtmlSourceCode($strHtml);
 
-          /*  echo "<form method=\"post\" action=\"\" class=\"selectorForm\">
-            <label for=\"categorias\">Escolha uma categoria</label>
-            <select name=\"categorias\" id=\"categorias\">";
+        $asForImages = AcaAmUtil::filterHyperlinksKeepingOnlyThoseWithHrefsEndingIn(
+            $as,
+            AcaAmUtil::CATEGORIA_FILTERS
+        );
 
-            foreach ($aCategorias as $key => $value ) {
-                if (empty($value) || !trim($value)) {
-                    unset($aCategorias[$key]);
-                    continue;
-                } 
-               
-                $finalValue=preg_replace('/\s+/', '', $value);
-
-                echo"<option value=\"$finalValue\">$finalValue</option>";              
-                                      
-            }//foreach
-            
-            echo "</select>
-                    <br><br>
-                    <input type=\"submit\" value=\"Submit\">
-                </form>";   */
-        }//if
-        return $aCategorias;
-         
+        return $asForImages;
     }//buscarCategorias
 
 
@@ -87,7 +58,7 @@ class wallpaperscraftBot {
             $nodeList = $xpath->query("//ul[@class='wallpapers__list ']");
 
             if($nodeList->count() == 0){
-                echo "<br> Nada foi escolhido";
+                //echo "<br> Nada foi escolhido";
             }else
             {
                 $node = $nodeList->item(0)->childNodes;//->childNodes->item(1);//->getAttribute('href');
