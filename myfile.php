@@ -68,8 +68,10 @@
                     <div class="card col-2" style="width: 18rem;">
                         <img src="<?php echo $value; ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <form class="d-flex" method="post" action="imgBD.php">
-                                <input type="submit" name ="<?php echo $value; ?>" value="Download" class="btn btn-primary btn-sm"></input>
+                            <form class="d-flex" method="post" action="downLoadImg.php">
+                            
+                                <input hidden name="urlImg"  value="<?php echo $value; ?>" type="text"></input>
+                                <input type="submit"  value="Download" class="btn btn-primary btn-sm"></input>
                             </form>
                         </div>
                     </div>

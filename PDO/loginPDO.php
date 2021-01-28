@@ -41,9 +41,10 @@ else
   $stmt->execute();
   $perfil = $stmt->fetch();
 
-  $_SESSION["user"]["id"] = $perfil["id"];
+  $_SESSION["user"]["id"] = $perfil["_id"];
   $_SESSION["user"]["nome"] = $perfil["nome"];
   $_SESSION["user"]["email"] = $email;
-
+ 
+  
 }
 ?>
