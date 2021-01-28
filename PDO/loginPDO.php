@@ -6,6 +6,7 @@ header("location:../myFile.php");
 $email = $_POST["mail"];
 $password = $_POST["pass"];
 
+//Verificar se o email e a password estão vazias
 if($email == "" || $password == "")
 {
     header("location:../login.php");
@@ -14,6 +15,7 @@ if($email == "" || $password == "")
     die();
 }
 
+//Consulta a BD para verificar login
 $prep = $conn->prepare("SELECT password FROM tusers WHERE email = :mail");
 $prep->bindParam(":mail", $email);
 $prep->execute();
@@ -36,6 +38,7 @@ if(!password_verify($password,$resultado["password"]))
 }
 else
 {
+    //Consulta a BD para efetuar login
   $stmt = $conn->prepare("SELECT * FROM tusers WHERE email = :mail");
   $stmt->bindParam(":mail",$email);
   $stmt->execute();

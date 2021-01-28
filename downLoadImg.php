@@ -1,15 +1,14 @@
 <?php
 session_start();
-//header("location:listaRegisto.php");
+//header("location:listarColecao.php");
 
 include_once("PDO/info/db.php");
 
 $URL = $_POST['urlImg'];
 
-
 if($URL == "")
 {
-    header("location:listaRegisto.php");
+    header("location:listarColecao.php");
     $_SESSION["sucesso"] = false;
     $_SESSION["mensagem"] = "Imagem vazia!";
     
@@ -23,15 +22,15 @@ $result = $stmt->fetch();
 
 if($result["total"]>0)
 {
-    header("location:listaRegisto.php");
+    header("location:listarColecao.php");
     $_SESSION["sucesso"] = false;
     $_SESSION["mensagem"] = "Esta imagem já se encontra registada!";
 
     die();
 }
 
-$data=date("Y/m/d"); 
-$idUser=$_SESSION["user"]["id"];
+$data=date("Y/m/d"); // obter a data atual
+$idUser=$_SESSION["user"]["id"]; // obter id do utilizador da sessão
 
 //Inserção da informação relativa ao novo utilizador
 $stmt = $conn->prepare("INSERT INTO tmyimgs(urlImg,dataInserir,idUser) VALUES(:url,:data,:idUser);");
@@ -42,7 +41,7 @@ $stmt->execute();
 
 if($stmt=true){
     $_SESSION["mensagem"] ="Registo Efetuado!";
-    header("location:listaRegisto.php");
+    header("location:listarColecao.php");
 }
 
 ?>

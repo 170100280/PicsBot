@@ -5,6 +5,7 @@ class AcaAmUtil
 
     const BOT_SIGNATURE = "For educational tests only";
 
+    // função para consumo de um URL
     public static function consumeUrl($pUrl)
     {
         $ch = curl_init($pUrl);
@@ -84,6 +85,7 @@ class AcaAmUtil
         return $aRet;
     }//extractHyperlinksFromHtmlSourceCode
 
+    /********************/
 
     const CATEGORIA_FILTERS = "/catalog/";
 

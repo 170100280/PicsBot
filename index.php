@@ -28,7 +28,7 @@ class wallpaperscraftBot {
     }//buscarCategorias
 
 
-
+    //função para recolher as imagens de acordo com a categoria escolhida
     function buscarImagensPorCategoria(){
 
         if(!isset($_POST['submit']))
@@ -38,10 +38,10 @@ class wallpaperscraftBot {
             $strCategory=strtolower($selectOption);
             //echo "<h2>$strCategory</h2>";
             $linkComCategoria=URL_CAT.$strCategory;
-           // echo $linkComCategoria;                   
+            // echo $linkComCategoria;
          } else{
-                echo " <br>Não foi escolhida categoria";
-        }
+            echo " <br>Não foi escolhida categoria";
+        }//if
         
         $strHtmlImagens = AcaAmUtil::consumeUrl($linkComCategoria);
 
@@ -64,30 +64,22 @@ class wallpaperscraftBot {
                 $node = $nodeList->item(0)->childNodes;//->childNodes->item(1);//->getAttribute('href');
                 $lengthNode=$nodeList->item(0)->childNodes->length;
                
-                    for ($i=0; $i+1 <= $lengthNode ; $i++) 
-                    { 
-                        if($node->item($i)->childNodes->item(1)!=NULL)
-                        {
-                            $srcIMG=$node->item($i)->childNodes->item(1)->childNodes->item(1)->childNodes->item(1)->getAttribute("src");   
-                            $aSrcs[]= $srcIMG;                        
-                            
-                            
-                        }//if                      
-                           
-                    }//for
-                    
-                              
+                for ($i=0; $i+1 <= $lengthNode ; $i++)
+                {
+                    if($node->item($i)->childNodes->item(1)!=NULL)
+                    {
+                        $srcIMG=$node->item($i)->childNodes->item(1)->childNodes->item(1)->childNodes->item(1)->getAttribute("src");
+                        $aSrcs[]= $srcIMG;
+                    }//if
+                }//for
             }//if
         }//if 
         return $aSrcs;
     }//buscarImagensPorCategoria
 
-
-    
-
 }//wallpaperscraftBot
-$tes =new wallpaperscraftBot();
 
+$tes =new wallpaperscraftBot();
 ?>
 
 

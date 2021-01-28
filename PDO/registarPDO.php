@@ -27,6 +27,7 @@ if($nome == "" || $email == "" || $pass == "")
   $_SESSION["mensagem"] = "Informação incompleta!";
   die();
 }
+
 //verificação se o email que se pretende registar já está inserido na base de dados
 $stmt = $conn->prepare("SELECT COUNT(*) AS total FROM utilizadores WHERE email = :mail");
 $stmt->bindParam(":mail",$email);
