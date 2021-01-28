@@ -1,14 +1,11 @@
 <?php
 session_start();
-//header("location:downLoadImg.php");
+//header("location:listaRegisto.php");
 
 include_once("PDO/info/db.php");
 
-
-
-
 $URL = $_POST['urlImg'];
- 
+
 
 if($URL == "")
 {
@@ -36,12 +33,16 @@ if($result["total"]>0)
 $data=date("Y/m/d"); 
 $idUser=$_SESSION["user"]["id"];
 
-
 //Inserção da informação relativa ao novo utilizador
 $stmt = $conn->prepare("INSERT INTO tmyimgs(urlImg,dataInserir,idUser) VALUES(:url,:data,:idUser);");
 $stmt->bindParam(":url",$URL);
 $stmt->bindParam(":data",$data);
 $stmt->bindParam(":idUser",$idUser);
 $stmt->execute();
+
+if($stmt=true){
+    $_SESSION["mensagem"] ="Registo Efetuado!";
+    header("location:listaRegisto.php");
+}
 
 ?>

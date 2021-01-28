@@ -71,8 +71,7 @@ class wallpaperscraftBot {
                             $srcIMG=$node->item($i)->childNodes->item(1)->childNodes->item(1)->childNodes->item(1)->getAttribute("src");   
                             $aSrcs[]= $srcIMG;                        
                             
-                            //echo "index.php -> <br>";
-                            //var_dump($aSrcs);
+                            
                         }//if                      
                            
                     }//for

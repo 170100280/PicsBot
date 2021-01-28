@@ -19,14 +19,14 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand">PicsBot</a>
+            <a class="navbar-brand" href="myfile.php">PicsBot</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">A Minha Coleção</a>
+                        <a class="nav-link active" aria-current="page" href="listarColecao.php">A Minha Coleção</a>
                     </li>
                     <li class="nav-item">
                         <form method="GET" action="PDO/logoutPDO.php">
@@ -53,7 +53,7 @@
             </div>
         </div>
     </nav>
-    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px;">
         <div class="row">
             <!-- LISTA IMAGENS-->
             <div class="col-12">
@@ -62,7 +62,7 @@
                         $categ1=$myClass->buscarImagensPorCategoria();
 
                         foreach ($categ1 as $key => $value)
-                        {
+                        { 
                     ?>
 
                     <div class="card col-2" style="width: 18rem;">
