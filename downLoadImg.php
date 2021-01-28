@@ -1,10 +1,9 @@
 <?php
 session_start();
-//header("location:listarColecao.php");
 
 include_once("PDO/info/db.php");
 
-$URL = $_POST['urlImg'];
+$URL = $_POST['urlImg'];//obter url da imagem clicada
 
 if($URL == "")
 {

@@ -29,7 +29,7 @@ if($nome == "" || $email == "" || $pass == "")
 }
 
 //verificação se o email que se pretende registar já está inserido na base de dados
-$stmt = $conn->prepare("SELECT COUNT(*) AS total FROM utilizadores WHERE email = :mail");
+$stmt = $conn->prepare("SELECT COUNT(*) AS total FROM tusers WHERE email = :mail");
 $stmt->bindParam(":mail",$email);
 $stmt->execute();
 $result = $stmt->fetch();

@@ -12,7 +12,7 @@ session_start();
             <input type="email" name="email" placeholder="Email"/>
             <input type="password" name="pass" placeholder="Password"/>
             <input type="submit" value="enviar"/>
-            <a href="index.php">Voltar</a>
+            <a href="login.php">Voltar</a>
             <span>
                 <?PHP
                 if(isset($_SESSION["sucesso"]))

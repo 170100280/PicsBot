@@ -34,11 +34,11 @@ class wallpaperscraftBot {
         if(!isset($_POST['submit']))
         {            
             $selectOption = $_POST['categorias']?? '';
-            //Cars != cars
+            
             $strCategory=strtolower($selectOption);
-            //echo "<h2>$strCategory</h2>";
+            
             $linkComCategoria=URL_CAT.$strCategory;
-            // echo $linkComCategoria;
+            
          } else{
             echo " <br>Não foi escolhida categoria";
         }//if
@@ -61,7 +61,7 @@ class wallpaperscraftBot {
                 //echo "<br> Nada foi escolhido";
             }else
             {
-                $node = $nodeList->item(0)->childNodes;//->childNodes->item(1);//->getAttribute('href');
+                $node = $nodeList->item(0)->childNodes;
                 $lengthNode=$nodeList->item(0)->childNodes->length;
                
                 for ($i=0; $i+1 <= $lengthNode ; $i++)
