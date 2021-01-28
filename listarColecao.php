@@ -42,25 +42,25 @@ include("PDO/info/db.php");
             </div>
         </div>
     </nav>
-    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px;">
         <div class="row">
             <!-- LISTA IMAGENS-->
             <div class="col-12">
                 <div class="row justify-content-center">
-                    <div class="card col-3" style="width: 18rem;">
+                    <div class="card col-2" style="width: 18rem;">
                         <?php
                         $id = $_SESSION["user"]["id"];
                         $stmt = $conn->prepare("SELECT urlImg FROM tmyimgs WHERE idUser = :id");
                         $stmt->bindParam(":id", $id);
                         $stmt->execute();
                         $img = $stmt->fetchAll();
-                        foreach ($img as $key => $value) {
-                            for ($i = 0; $i <= count($value); $i++) {
+                       
+                        foreach ($img as $key => $value) {                           
                         ?>
-                                <img src="<?php echo $value[$i]; ?>" class="card-img-top" alt="">
+                                <img src="<?php echo $value["urlImg"]; ?>" class="card-img-top" alt="">
                                 <div class="card-body">
                                 </div>
-                        <?php          }
+                        <?php          
                         }   ?>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ session_start();
     <input type="text" name="nome" placeholder="Nome"/>
     <input type="email" name="email" placeholder="Email"/>
     <input type="password" name="pass" placeholder="Password"/>
-    <input type="file" name="ficheiro" placeholder="foto"/>
+    
     <input type="submit" value="enviar"/>
     <a href="index.php">Voltar</a>
     <span>
